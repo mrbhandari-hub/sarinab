@@ -79,21 +79,33 @@ const Doll = ({ customization }: { customization: DollCustomization }) => {
     }
     if (customization.hairStyle === 'curly') {
       return (
-        <g fill={`url(#${id('hairGrad')})`} opacity={0.9}>
-          <circle cx="80" cy="150" r="30" />
-          <circle cx="110" cy="200" r="35" />
-          <circle cx="220" cy="150" r="30" />
-          <circle cx="190" cy="200" r="35" />
+        <g fill={`url(#${id('hairGrad')})`}>
+          <circle cx="75" cy="160" r="35" />
+          <circle cx="105" cy="210" r="38" />
+          <circle cx="225" cy="160" r="35" />
+          <circle cx="195" cy="210" r="38" />
         </g>
       );
     }
     if (customization.hairStyle === 'ponytail') {
-      return <path d="M210 120 Q250 220 210 330" stroke={`url(#${id('hairGrad')})`} strokeWidth={45} strokeLinecap="round" />;
+      return (
+        <path
+          d="M210 110 Q250 200 210 320"
+          stroke={`url(#${id('hairGrad')})`}
+          strokeWidth={50}
+          strokeLinecap="round"
+          fill="none"
+        />
+      );
     }
     const wave = customization.hairStyle === 'long-wavy';
     return (
       <path
-        d={wave ? 'M70 130 C70 250 110 360 150 360 C190 360 230 250 230 130' : 'M80 120 L80 340 Q150 380 220 340 L220 120 Z'}
+        d={
+          wave
+            ? 'M70 120 C70 240 100 340 150 350 C200 340 230 240 230 120'
+            : 'M75 110 L75 330 Q150 370 225 330 L225 110 Z'
+        }
         fill={`url(#${id('hairGrad')})`}
       />
     );
@@ -102,51 +114,75 @@ const Doll = ({ customization }: { customization: DollCustomization }) => {
   const renderHairFront = () => {
     switch (customization.hairStyle) {
       case 'long-straight':
-        return <ellipse cx="150" cy="120" rx="95" ry="70" fill={`url(#${id('hairShine')})`} />;
+        return (
+          <g>
+            <ellipse cx="150" cy="100" rx="100" ry="75" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="85" rx="85" ry="55" fill={`url(#${id('hairShine')})`} />
+          </g>
+        );
       case 'long-wavy':
         return (
-          <g fill={`url(#${id('hairShine')})`}>
-            <ellipse cx="150" cy="115" rx="95" ry="70" />
-            <path d="M85 140 Q120 210 110 260" opacity={0.35} />
-            <path d="M215 140 Q180 210 190 260" opacity={0.35} />
+          <g>
+            <ellipse cx="150" cy="100" rx="100" ry="75" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="85" rx="85" ry="55" fill={`url(#${id('hairShine')})`} />
+            <path d="M70 120 Q90 180 85 240" stroke={palette.hairShadow} strokeWidth="8" fill="none" opacity={0.4} />
+            <path d="M230 120 Q210 180 215 240" stroke={palette.hairShadow} strokeWidth="8" fill="none" opacity={0.4} />
           </g>
         );
       case 'curly':
         return (
-          <g fill={`url(#${id('hairShine')})`}>
-            <circle cx="90" cy="100" r="35" />
-            <circle cx="120" cy="75" r="38" />
-            <circle cx="210" cy="100" r="35" />
-            <circle cx="180" cy="75" r="38" />
+          <g fill={`url(#${id('hairGrad')})`}>
+            <circle cx="90" cy="95" r="38" />
+            <circle cx="125" cy="70" r="40" />
+            <circle cx="210" cy="95" r="38" />
+            <circle cx="175" cy="70" r="40" />
+            <ellipse cx="150" cy="85" rx="90" ry="60" fill={`url(#${id('hairShine')})`} />
           </g>
         );
       case 'bun':
         return (
           <>
-            <ellipse cx="150" cy="90" rx="90" ry="60" fill={`url(#${id('hairShine')})`} />
-            <ellipse cx="150" cy="45" rx="38" ry="32" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="85" rx="95" ry="65" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="40" rx="42" ry="36" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="40" rx="35" ry="30" fill={`url(#${id('hairShine')})`} />
           </>
         );
       case 'ponytail':
-        return <ellipse cx="150" cy="95" rx="95" ry="65" fill={`url(#${id('hairShine')})`} />;
+        return (
+          <>
+            <ellipse cx="150" cy="90" rx="100" ry="70" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="80" rx="85" ry="55" fill={`url(#${id('hairShine')})`} />
+          </>
+        );
       case 'braids':
         return (
           <>
-            <ellipse cx="150" cy="95" rx="95" ry="65" fill={`url(#${id('hairShine')})`} />
-            <rect x="90" y="135" width="30" height="110" rx="14" fill={`url(#${id('hairGrad')})`} />
-            <rect x="180" y="135" width="30" height="110" rx="14" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="90" rx="100" ry="70" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="80" rx="85" ry="55" fill={`url(#${id('hairShine')})`} />
+            <rect x="85" y="130" width="32" height="115" rx="16" fill={`url(#${id('hairGrad')})`} />
+            <rect x="183" y="130" width="32" height="115" rx="16" fill={`url(#${id('hairGrad')})`} />
+            <circle cx="101" cy="150" r="6" fill={palette.hairShadow} opacity={0.5} />
+            <circle cx="101" cy="180" r="6" fill={palette.hairShadow} opacity={0.5} />
+            <circle cx="199" cy="150" r="6" fill={palette.hairShadow} opacity={0.5} />
+            <circle cx="199" cy="180" r="6" fill={palette.hairShadow} opacity={0.5} />
           </>
         );
       case 'bob':
         return (
           <>
-            <ellipse cx="150" cy="105" rx="95" ry="65" fill={`url(#${id('hairShine')})`} />
-            <ellipse cx="150" cy="150" rx="95" ry="35" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="100" rx="100" ry="70" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="90" rx="85" ry="55" fill={`url(#${id('hairShine')})`} />
+            <ellipse cx="150" cy="155" rx="100" ry="40" fill={`url(#${id('hairGrad')})`} />
           </>
         );
       case 'short':
       default:
-        return <ellipse cx="150" cy="95" rx="90" ry="60" fill={`url(#${id('hairShine')})`} />;
+        return (
+          <>
+            <ellipse cx="150" cy="90" rx="95" ry="65" fill={`url(#${id('hairGrad')})`} />
+            <ellipse cx="150" cy="80" rx="80" ry="50" fill={`url(#${id('hairShine')})`} />
+          </>
+        );
     }
   };
 
@@ -345,8 +381,9 @@ const Doll = ({ customization }: { customization: DollCustomization }) => {
           <stop offset="100%" stopColor={palette.hairShadow} />
         </linearGradient>
         <radialGradient id={id('hairShine')} cx="30%" cy="30%" r="65%">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.5)" />
-          <stop offset="100%" stopColor={palette.hair} />
+          <stop offset="0%" stopColor={palette.hairHighlight} stopOpacity="0.8" />
+          <stop offset="50%" stopColor={palette.hair} stopOpacity="1" />
+          <stop offset="100%" stopColor={palette.hair} stopOpacity="1" />
         </radialGradient>
         <linearGradient id={id('outfitGrad')} x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={palette.outfitHighlight} />
@@ -411,7 +448,7 @@ const Doll = ({ customization }: { customization: DollCustomization }) => {
 
       {renderHairFront()}
 
-      {/* Brows */}
+      {/* Brows - on top of hair */}
       <g stroke={palette.hairShadow} strokeWidth="7" strokeLinecap="round" opacity={0.8}>
         <path d="M100 160 Q125 140 150 160" />
         <path d="M200 160 Q175 140 150 160" />
